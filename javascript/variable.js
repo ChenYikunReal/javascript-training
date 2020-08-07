@@ -29,6 +29,9 @@ console.log();
 // 直接定义对象 JSON字符串 类似于Python字典
 let var8 = {"id": 1, "name": "Sam", grade: 100};
 console.log(var8);
+// 对象访问属性值
+console.log(var8.id);
+console.log(var8["name"]);
 console.log();
 
 // 函数对象
@@ -56,3 +59,18 @@ console.log();
 
 // 不能定义同名let变量 node编译报错
 // let var11 = 1;
+
+// java未赋值的变量是null ; js未赋值的变量是undefined
+let var13;
+console.log(var13);
+console.log();
+
+// js的null是指定的
+let var14 = null;
+console.log(var14);
+console.log();
+
+// 布尔变量
+let var15 = true, var16 = false;
+console.log(var15, var16);
+console.log(var15===var16);
