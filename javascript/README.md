@@ -159,3 +159,8 @@ true
 false
 ```
 
+## JavaScript比较运算符
+- ==emsp;->emsp;不绝对等于
+- ===emsp;->emsp;绝对等于(值和类型均相等)
+- !=emsp;->emsp;绝对不等于
+- !==emsp;->emsp;不绝对等于(值和类型有一个不相等，或两个都不相等)
