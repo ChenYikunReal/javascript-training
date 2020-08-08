@@ -58,6 +58,21 @@ false
 |do | import | short | while|
 |double | in | static | with|
 
+## JavaScript保留字
+
+- implements
+- interface
+- ~~let~~
+- package
+- private
+- protected
+- public
+- static
+- yield
+- [链接](https://www.runoob.com/js/js-reserved.html)
+
+"use strict";
+
 ## JavaScript语句标识符
 |语句 | 描述|
 |:---:|:---:|
@@ -198,6 +213,14 @@ for (let i in nums) {
     - null
     - undefined
 
+强调：
+- NaN的数据类型是number
+- 数组(Array)的数据类型是object
+- 日期(Date)的数据类型为object
+- null的数据类型是object
+- 未定义变量的数据类型为undefined
+
+
 ## JavaScript类型转换
 |原始值 | 转换为数字 | 转换为字符串 | 转换为布尔值 |
 |:---:|:---:|:---:|:---:|
@@ -268,4 +291,48 @@ for (let i in nums) {
 - 可能是由于许多其他不可预知的因素
 
 当错误发生时，JavaScript引擎通常会停止，并生成一个错误消息，即JavaScript抛出一个错误。
+
+## JavaScript变量提升
+- JavaScript中，函数及变量的声明都将被提升到函数的最顶部
+- JavaScript中，变量可以在使用后声明，也就是变量可以先使用再声明
+- JavaScript中，变量初始化不会提升
+- var行，let不行
+- 尽管有变量提升机制，但通常我们在每个作用域开始前声明这些变量
+
+## JavaScript操作符typeof
+```javascript
+typeof "John"                 // 返回 string
+typeof 3.14                   // 返回 number
+typeof NaN                    // 返回 number
+typeof false                  // 返回 boolean
+typeof [1,2,3,4]              // 返回 object
+typeof {name:'John', age:34}  // 返回 object
+typeof new Date()             // 返回 object
+typeof function () {}         // 返回 function
+typeof myCar                  // 返回 undefined (如果 myCar 没有声明)
+typeof null                   // 返回 object 
+```
+
+## JavaScript属性constructor
+```javascript
+"John".constructor                 // 返回函数 String()  { [native code] }
+(3.14).constructor                 // 返回函数 Number()  { [native code] }
+false.constructor                  // 返回函数 Boolean() { [native code] }
+[1,2,3,4].constructor              // 返回函数 Array()   { [native code] }
+{name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
+new Date().constructor             // 返回函数 Date()    { [native code] }
+function(){}.constructor         // 返回函数 Function(){ [native code] } 
+```
+
+## JavaScript关键字this
+面向对象语言中this表示当前对象的一个引用，但在JavaScript中this不是固定不变的，它会随着执行环境的改变而改变：
+- 在方法中，this 表示该方法所属的对象
+- 如果单独使用，this表示全局对象
+- 在函数中，this表示全局对象
+- 在函数中，在严格模式下，this是未定义的(undefined)
+- 在事件中，this表示接收事件的元素
+- 类似call()和apply()方法可以将this引用到任何对象
+
+## JavaScriptのnull+undefined
+![在这里插入图片描述](https://github.com/ChenYikunReal/node_training/blob/master/images/null-undefined.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg5NjMxOA==,size_16,color_FFFFFF,t_70)
 
