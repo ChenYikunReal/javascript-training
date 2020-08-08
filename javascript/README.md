@@ -164,3 +164,62 @@ false
 - ===&nbsp;&nbsp;&nbsp;->&emsp;绝对等于(值和类型均相等)
 - !=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;->&emsp;绝对不等于
 - !==&nbsp;&nbsp;&nbsp;&nbsp;->&emsp;不绝对等于(值和类型有一个不相等，或两个都不相等)
+
+## JavaScript循环结构for...in
+其实没啥可说的，很简单，就是java的增强for循环而已。
+```java
+int[] nums = {1, 2, 3, 4, 5, 6};
+
+for (int i : nums) {
+    // ...
+}
+```
+```javascript
+let nums = [1, 2, 3, 4, 5, 6];
+
+for (let i in nums) {
+    // ...
+}
+```
+
+## JavaScript数据类型
+- 6种不同的数据类型：
+    - string
+    - number
+    - boolean
+    - object
+    - function
+    - symbol
+- 3种对象类型：
+    - Object
+    - Date
+    Array
+- 2个不包含任何值的数据类型：
+    - null
+    - undefined
+
+## JavaScript类型转换
+|原始值 | 转换为数字 | 转换为字符串 | 转换为布尔值 |
+|:---:|:---:|:---:|:---:|
+|false | `0` | "false" | false| 
+|true | `1` | "true" | true| 
+|0 | 0 | "0" | `false`| 
+|1 | 1 | "1" | true| 
+|"0" | 0 | "0" | `true`| 
+|"000" | `0` | "000" | `true`| 
+|"1" | 1 | "1" | true| 
+|NaN | NaN | `"NaN"` | `false`| 
+|Infinity | Infinity | `"Infinity"` | `true`| 
+|-Infinity | -Infinity | `"-Infinity"` | `true`| 
+|"" | `0` | "" | `false`| 
+|"20" | 20 | "20" | `true`| 
+|"JavaScript" | `NaN` | "JavaScript" | `true`| 
+|[] | `0` | `""` | `true`| 
+|[20] | `20` | `"20"` | `true`| 
+|[10,20] | `NaN` | `"10,20"` | `true`| 
+|["JavaScript"] | `NaN` | `"JavaScript"` | `true`| 
+|["JavaScript","HTML"] | `NaN` | `"JavaScript,HTML"` | `true`| 
+|function(){} | `NaN` | `"function(){}"` | `true`| 
+|{} | `NaN` | `"[object Object]"` | `true`| 
+|null | `0` | `"null"` | `false`| 
+|undefined | `NaN` | `"undefined"` | `false`|
