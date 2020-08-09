@@ -347,9 +347,6 @@ function(){}.constructor           // 返回函数 Function(){ [native code] }
     - 为未来新版本的Javascript做好铺垫
 - `"use strict"指令只允许出现在脚本或函数的开头`
 
-## JavaScript使用误区小结
-[JavaScript使用误区小结](https://www.runoob.com/js/js-mistakes.html)
-
 ## JavaScript变量作用域
 ES6之前只有：
 - 全局变量(在函数外声明的变量)
@@ -415,3 +412,74 @@ void()仅仅是代表不返回任何值，但是括号内的表达式还是要�
 <!--Chrome 中即使 javascript:0; 也没变化，firefox中会变成一个字符串0-->
 <a href="javascript:0" rel="nofollow ugc">点击此处</a>
 ```
+
+## JavaScript异步编程
+![在这里插入图片描述](https://github.com/ChenYikunReal/node_training/blob/master/images/js-async.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg5NjMxOA==,size_16,color_FFFFFF,t_70)
+<br/><br/>
+异步的通俗解释 => 异步就是从主线程发射一个子线程来完成任务
+
+### 异步编程的使用时机
+在前端编程中（甚至后端有时也是这样），我们在处理一些简短、快速的操作时，例如计算 1 + 1 的结果，往往在主线程中就可以完成。主线程作为一个线程，不能够同时接受多方面的请求。所以，当一个事件没有结束时，界面将无法处理其他请求。<br/>
+现在有一个按钮，如果我们设置它的 onclick 事件为一个死循环，那么当这个按钮按下，整个网页将失去响应。<br/>
+为了避免这种情况的发生，我们常常用子线程来完成一些可能消耗时间足够长以至于被用户察觉的事情，比如读取一个大文件或者发出一个网络请求。因为子线程独立于主线程，所以即使出现阻塞也不会影响主线程的运行。但是子线程有一个局限：一旦发射了以后就会与主线程失去同步，我们无法确定它的结束，如果结束之后需要处理一些事情，比如处理来自服务器的信息，我们是无法将它合并到主线程中去的。<br/>
+为了解决这个问题，JavaScript 中的异步操作函数往往通过回调函数来实现异步任务的结果处理。
+
+### 异步编程与回调函数
+说到异步编程，就不能不提回调函数。
+
+回调函数就是一个函数，它是在我们启动一个异步任务的时候就告诉它：等你完成了这个任务之后要干什么。这样一来主线程几乎不用关心异步任务的状态了，他自己会善始善终。
+
+```javascript
+setTimeout(function () {
+    document.getElementById("demo").innerHTML="Test!";
+}, 3000);
+```
+setTimeout()双参数：
+1. 回调函数对象
+2. 等待的毫秒数
+
+### Promise相关Q&A
+- Q: then、catch 和 finally 序列能否顺序颠倒？<br/>
+A: 可以，效果完全一样。但不建议这样做，最好按 then-catch-finally 的顺序编写程序。
+- Q: 除了 then 块以外，其它两种块能否多次使用？<br/>
+A: 可以，finally 与 then 一样会按顺序执行，但是 catch 块只会执行第一个，除非 catch 块里有异常。所以最好只安排一个 catch 和 finally 块。
+- Q: then 块如何中断？<br/>
+A: then 块默认会向下顺序执行，return 是不能中断的，可以通过 throw 来跳转至 catch 实现中断。
+- Q: 什么时候适合用 Promise 而不是传统回调函数？<br/>
+A: 当需要多次顺序执行异步操作的时候，例如，如果想通过异步方法先后检测用户名和密码，需要先异步检测用户名，然后再异步检测密码的情况下就很适合 Promise。
+- Q: Promise 是一种将异步转换为同步的方法吗？<br/>
+A: 完全不是。Promise 只不过是一种更良好的编程风格。
+- Q: 什么时候我们需要再写一个 then 而不是在当前的 then 接着编程？<br/>
+A: 当你又需要调用一个异步任务的时候。
+
+## JavaScript函数
+1. 分号是用来分隔可执行JavaScript语句。由于函数声明不是一个可执行语句，所以不以分号结束。
+2. 闭包是一种保护私有变量的机制，在函数执行时形成私有的作用域，保护里面的私有变量不受外界干扰。直观的说就是形成一个不销毁的栈环境。
+3. 因为函数也有提升机制(类似于变量提升机制)，所以函数可以在声明之前调用。
+
+## JavaScript全局变量与window对象属性的差别
+1. 全局变量不能通过`delete`操作符删除；而`window`属性上定义的变量可以通过`delete`删除
+2. 访问未声明的变量会抛出错误，但是通过查询`window`对象，可以知道某个可能未声明的变量是否存在
+3. 有些自执行函数里面的变量，想要外部也访问到的话，在`window`对象上直接定义属性
+
+## JavaScript的Navigator注意事项
+来自`navigator`对象的信息具有误导性，不应该被用于检测浏览器版本，这是因为：
+- navigator数据可被浏览器使用者更改
+- 一些浏览器对测试站点会识别错误
+- 浏览器无法报告晚于浏览器发布的新操作系统
+
+## JavaScript弹窗
+- 警告框：`window.alert("sometext");`
+- 确认框：`window.confirm("sometext");`
+- 提示框：`window.prompt("sometext","defaultvalue");`
+
+## JavaScript计时
+- setInterval() : 间隔指定的毫秒数不停地执行指定的代码<br/>`window.setInterval("javascript function",milliseconds);`
+- setTimeout() : 在指定的毫秒数后执行指定代码<br/>`window.setTimeout("javascript function", milliseconds);`
+- clearInterval() : 停止setInterval()方法执行的函数代码<br/>`window.clearInterval(intervalVariable)`
+
+## JavaScript资料补充[菜鸟教程]
+- [JavaScript使用误区小结](https://www.runoob.com/js/js-mistakes.html)
+- [JavaScript代码规范](https://www.runoob.com/js/js-conventions.html)
+- [JavaScript实例](https://www.runoob.com/js/js-examples.html)
+- [JavaScript参考手册](https://www.runoob.com/jsref/jsref-tutorial.html)
