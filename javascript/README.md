@@ -71,8 +71,6 @@ false
 - yield
 - [链接](https://www.runoob.com/js/js-reserved.html)
 
-"use strict";
-
 ## JavaScript语句标识符
 |语句 | 描述|
 |:---:|:---:|
@@ -95,11 +93,11 @@ false
 JavaScript对象是变量的容器 => JavaScript对象是键值对的容器。
 
 JavaScript对象类似于：
-- PHP 中的关联数组
-- Python 中的字典
-- C 语言中的哈希表
-- Java 中的哈希映射
-- Ruby 和 Perl 中的哈希表
+- PHP中的关联数组
+- Python中的字典
+- C语言中的哈希表
+- Java中的哈希映射
+- Ruby和Perl中的哈希表
 
 ## string-function.js输出结果
 ```text
@@ -345,7 +343,7 @@ function(){}.constructor           // 返回函数 Function(){ [native code] }
     - 消除代码运行的一些不安全之处，保证代码运行的安全
     - 提高编译器效率，增加运行速度
     - 为未来新版本的Javascript做好铺垫
-- `"use strict"指令只允许出现在脚本或函数的开头`
+- `"use strict"`指令只允许出现在脚本或函数的开头
 
 ## JavaScript变量作用域
 ES6之前只有：
@@ -373,7 +371,7 @@ var x = 10;
 // 这里输出 x 为 10
 ```
 
-### 辨析`var`和`let`
+### 辨析var和let
 - 使用`var`关键字声明的全局作用域变量`属于`window对象
 - 使用`let`关键字声明的全局作用域变量`不属于`window对象
 - 使用`var`关键字声明的变量在任何地方都可以修改
@@ -384,7 +382,7 @@ var x = 10;
 
 ## JavaScript关键词const
 都说const定义的是常量，但还是有些说法的。
-### 辨析`const`和`var`：
+### 辨析const和var
 - 相似点
     - 二者都是块级作用域
     - 都不能和它所在作用域内的其他变量或函数拥有相同的名称
