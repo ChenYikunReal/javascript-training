@@ -1,0 +1,78 @@
+// 使用严格模式
+"use strict";
+
+// 不允许使用未声明的变量
+a = 1;
+
+// 对象也是一个变量，所以也不允许不声明就使用
+b = {p1: 10, p2: 20};
+
+// 不允许删除变量或对象
+let c = 1;
+delete c;
+
+// 一个函数是一个变量，也是一个对象，所以也不允许删除函数
+function add(x, y) {
+    return x + y;
+}
+delete add;
+
+// 不允许变量重名
+function d(e, e) {
+    return e + e;
+}
+
+// 不允许使用八进制数值
+let f = 0o11;
+
+// 不允许使用转义字符
+let g = \011;
+
+// 不允许对只读属性赋值
+let h = {};
+Object.defineProperty(h, "x", {value:0, writable:false});
+h.x = 1;
+
+// 不允许对一个使用getter方法读取的属性进行赋值
+let i = {
+    get x() {
+        return 0;
+    }
+};
+i.x = 3.14;
+
+// 不允许删除一个不允许删除的属性
+delete Object.prototype;
+
+// 变量名不能使用"eval"字符串
+let eval = 1;
+
+// 变量名不能使用"arguments"字符串
+let arguments = 1;
+
+// 不允许使用以下这种语句
+with (Math) {
+    j = cos(2);
+}
+
+// 由于一些安全原因，在作用域eval()创建的变量不能被调用
+eval ("let k = 2");
+console.log(k);
+
+// 禁止this关键字指向全局对象
+function f1(){
+    // 返回false，因为"this"指向全局对象，"!this"就是false
+    return !this;
+}
+function f2(){
+    "use strict";
+    // 返回true，因为严格模式下，this的值为undefined，所以"!this"为true
+    return !this;
+}
+// 使用构造函数时，如果忘了加new，this不再指向全局对象，而是报错
+function f3(){
+    "use strict";
+    this.a = 1;
+}
+// 报错，this未定义
+f3();

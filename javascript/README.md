@@ -310,18 +310,18 @@ typeof {name:'John', age:34}  // 返回 object
 typeof new Date()             // 返回 object
 typeof function () {}         // 返回 function
 typeof myCar                  // 返回 undefined (如果 myCar 没有声明)
-typeof null                   // 返回 object 
+typeof null                   // 返回 object
 ```
 
 ## JavaScript属性constructor
-```javascript
+```text
 "John".constructor                 // 返回函数 String()  { [native code] }
 (3.14).constructor                 // 返回函数 Number()  { [native code] }
 false.constructor                  // 返回函数 Boolean() { [native code] }
 [1,2,3,4].constructor              // 返回函数 Array()   { [native code] }
 {name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
 new Date().constructor             // 返回函数 Date()    { [native code] }
-function(){}.constructor         // 返回函数 Function(){ [native code] } 
+function(){}.constructor           // 返回函数 Function(){ [native code] } 
 ```
 
 ## JavaScript关键字this
@@ -336,3 +336,82 @@ function(){}.constructor         // 返回函数 Function(){ [native code] }
 ## JavaScriptのnull+undefined
 ![在这里插入图片描述](https://github.com/ChenYikunReal/node_training/blob/master/images/null-undefined.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg5NjMxOA==,size_16,color_FFFFFF,t_70)
 
+## JavaScript严格模式
+- 严格模式下不能使用未声明的变量
+- 严格模式通过在脚本或函数的头部添加`"use strict";`表达式来声明
+- 在函数内部声明是局部作用域时，只在函数内使用严格模式
+- 为什么使用严格模式:
+    - 消除语法的一些不合理和不严谨之处，减少一些怪异行为
+    - 消除代码运行的一些不安全之处，保证代码运行的安全
+    - 提高编译器效率，增加运行速度
+    - 为未来新版本的Javascript做好铺垫
+- `"use strict"指令只允许出现在脚本或函数的开头`
+
+## JavaScript使用误区小结
+[JavaScript使用误区小结](https://www.runoob.com/js/js-mistakes.html)
+
+## JavaScript变量作用域
+ES6之前只有：
+- 全局变量(在函数外声明的变量)
+- 函数内的局部变量(在函数内声明的变量)
+ES6新增：
+- 块级作用域变量(`let`)
+
+```javascript
+var x = 10;
+// 这里输出 x 为 10
+{ 
+    var x = 2;
+    // 这里输出 x 为 2
+}
+// 这里输出 x 为 2
+```
+```javascript
+var x = 10;
+// 这里输出 x 为 10
+{ 
+    let x = 2;
+    // 这里输出 x 为 2
+}
+// 这里输出 x 为 10
+```
+
+### 辨析`var`和`let`
+- 使用`var`关键字声明的全局作用域变量`属于`window对象
+- 使用`let`关键字声明的全局作用域变量`不属于`window对象
+- 使用`var`关键字声明的变量在任何地方都可以修改
+- 在相同的作用域或块级作用域中，不能使用`let`关键字来重置`var`关键字声明的变量
+- 在相同的作用域或块级作用域中，不能使用`let`关键字来重置`let`关键字声明的变量
+- 在相同的作用域或块级作用域中，不能使用`var`关键字来重置`let`关键字声明的变量
+- `let`关键字在不同作用域，或不同块级作用域中是可以重新声明赋值的
+
+## JavaScript关键词const
+都说const定义的是常量，但还是有些说法的。
+### 辨析`const`和`var`：
+- 相似点
+    - 二者都是块级作用域
+    - 都不能和它所在作用域内的其他变量或函数拥有相同的名称
+- 不同点
+    - `const`声明的常量必须初始化，而`let`声明的变量不用
+    - `const`定义常量的值不能通过再赋值修改，也不能再次声明。而`let`定义的变量值可以修改
+### const的本质
+const定义的变量并非常量，并非不可变，它定义了一个常量引用一个值。<br/>
+使用const定义的对象或者数组，其实元素是可变的。<br/>
+但是我们不能对常量对象重新赋值。
+
+## JavaScript关键词void
+void()仅仅是代表不返回任何值，但是括号内的表达式还是要运行。
+
+```html
+<!--阻止链接跳转，URL不会有任何变化-->
+<a href="javascript:void(0)" rel="nofollow ugc">点击此处</a>
+
+<!--虽然阻止了链接跳转，但URL尾部会多个#，改变了当前URL。（# 主要用于配合 location.hash）-->
+<a href="#" rel="nofollow ugc">点击此处</a>
+
+<!--同理，# 可以的话，? 也能达到阻止页面跳转的效果，但也相同的改变了URL。（? 主要用于配合 location.search）-->
+<a href="?" rel="nofollow ugc">点击此处</a>
+
+<!--Chrome 中即使 javascript:0; 也没变化，firefox中会变成一个字符串0-->
+<a href="javascript:0" rel="nofollow ugc">点击此处</a>
+```
