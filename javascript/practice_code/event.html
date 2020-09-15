@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js网页事件测试</title>
+    <!--配套js测试：event-js.js-->
+    <script src="event-js.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            load();
+        };
+        window.onclick = function() {
+            click();
+        };
+    </script>
+</head>
+<body>
+    <button onmouseout="mouse_out()" onmouseover="mouse_over()" type="button">按钮</button><br/><br/>
+    <label onload="load()">
+        <select onchange="change()">
+            <option>苹果</option>
+            <option selected="selected">香蕉</option>
+            <option>樱桃</option>
+        </select>
+    </label><br/><br/>
+    <label onkeydown="key_down()">
+        <input type="text" size="40" maxlength="50">
+    </label>
+</body>
+</html>
