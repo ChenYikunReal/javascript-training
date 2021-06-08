@@ -21,4 +21,4 @@ typeof y // 返回 Object
 // 不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用
 var x = "John";
 var y = new String("John");
-print(x === y) // 结果为 false，因为 x 是字符串，y 是对象
+console.log(x === y) // 结果为 false，因为 x 是字符串，y 是对象
